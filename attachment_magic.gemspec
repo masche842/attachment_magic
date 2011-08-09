@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = AttachmentMagic::VERSION
   s.authors     = ["Thomas von Deyen"]
   s.email       = ["tvdeyen@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "https://github.com/magiclabs/attachment_magic"
+  s.summary     = %q{A simple file attachment gem for Rails 3}
+  s.description = %q{A Rails 3 Gem based on attachment_fu, but without the image processing fudge and multiple backend crap! Just simple file attachments with a little mime type magic ;)}
 
   s.rubyforge_project = "attachment_magic"
 
@@ -18,4 +18,5 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
   s.add_runtime_dependency(%q<rails>, ["< 3.1", ">= 3.0.7"])
+  s.add_runtime_dependency(%q<mimetype-fu>, ["~> 0.1.2"])
 end

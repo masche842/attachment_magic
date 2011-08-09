@@ -16,10 +16,9 @@ module AttachmentMagic # :nodoc:
       #   Rails.root.to_s/public/my_models/5/blah.jpg
       #
       # Overwrite this method in your model to customize the filename.
-      # The optional thumbnail argument will output the thumbnail's filename.
-      def full_filename(thumbnail = nil)
-        file_system_path = (thumbnail ? thumbnail_class : self).attachment_options[:path_prefix].to_s
-        Rails.root.join( file_system_path, *partitioned_path(thumbnail_name_for(thumbnail))).to_s
+      def full_filename
+        file_system_path = self.attachment_options[:path_prefix].to_s
+        Rails.root.join(file_system_path, *partitioned_path(filename)).to_s
       end
     
       # Used as the base path that #public_filename strips off full_filename to create the public path
@@ -66,9 +65,8 @@ module AttachmentMagic # :nodoc:
       end
     
       # Gets the public path to the file
-      # The optional thumbnail argument will output the thumbnail's filename.
-      def public_filename(thumbnail = nil)
-        full_filename(thumbnail).gsub %r(^#{Regexp.escape(base_path)}), ''
+      def public_filename()
+        full_filename.gsub %r(^#{Regexp.escape(base_path)}), ''
       end
     
       def filename=(value)
